@@ -5,11 +5,9 @@ namespace Vendor\UnderstrapEstate;
 use Vendor\UnderstrapEstate\Controller\MetaBox\CityListEstate;
 use Vendor\UnderstrapEstate\Controller\MetaBox\EstateCityIdBox;
 use Vendor\UnderstrapEstate\Entity\MetaPoly;
-use Vendor\UnderstrapEstate\Entity\ScriptType;
 use Vendor\UnderstrapEstate\Entity\MetaPolyType;
 use Vendor\UnderstrapEstate\Controller\Post\CityPost;
 use Vendor\UnderstrapEstate\Controller\Post\EstatePost;
-use Vendor\UnderstrapEstate\Controller\ScriptController;
 
 class Main
 {
