@@ -1,0 +1,15 @@
+{
+    "name": "vendor/understrap-estate",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\UnderstrapEstate\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dadadam",
+            "email": "bogdanov.andrey.code@gmail.com"
+        }
+    ],
+    "require": {}
+}
