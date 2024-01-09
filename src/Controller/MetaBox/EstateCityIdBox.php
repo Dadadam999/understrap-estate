@@ -5,6 +5,7 @@ namespace Vendor\UnderstrapEstate\Controller\MetaBox;
 use Vendor\UnderstrapEstate\Entity\Post;
 use Vendor\UnderstrapEstate\Entity\MetaPoly;
 use Vendor\UnderstrapEstate\Field\SelectField;
+use Vendor\UnderstrapEstate\Controller\ViewLoader;
 use Vendor\UnderstrapEstate\Interface\MetaBoxInterface;
 use Vendor\UnderstrapEstate\Controller\BaseMetaBoxController;
 
@@ -22,9 +23,6 @@ class EstateCityIdBox extends BaseMetaBoxController implements MetaBoxInterface
         );
     }
 
-    /**
-     * @var SelectField $citiesField use in template
-     */
     public function render($post): void
     {
         $cities = get_posts([
@@ -49,15 +47,9 @@ class EstateCityIdBox extends BaseMetaBoxController implements MetaBoxInterface
             )
         );
 
-        ob_start();
-
-        require_once str_replace(
-            '/',
-            DIRECTORY_SEPARATOR,
-            WP_PLUGIN_DIR . '/understrap-estate/src/Template/MetaBox/EstateCityIdView.php'
-        );
-
-        echo ob_get_clean();
+        $view = ViewLoader::getView('EstateCityId');
+        $view->addVariable('citiesField', $citiesField);
+        ViewLoader::load($view->name);
     }
 
     public function callback($postId): void

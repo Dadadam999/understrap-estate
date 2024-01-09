@@ -6,6 +6,7 @@ use Vendor\UnderstrapEstate\Entity\Post;
 use Vendor\UnderstrapEstate\Field\TextAreaField;
 use Vendor\UnderstrapEstate\Interface\MetaBoxInterface;
 use Vendor\UnderstrapEstate\Controller\BaseMetaBoxController;
+use Vendor\UnderstrapEstate\Controller\ViewLoader;
 use Vendor\UnderstrapEstate\Entity\MetaPoly;
 
 class CityDescriptionBox extends BaseMetaBoxController implements MetaBoxInterface
@@ -22,10 +23,6 @@ class CityDescriptionBox extends BaseMetaBoxController implements MetaBoxInterfa
         );
     }
 
-
-    /**
-     * @var TextAreaField $descriptionField use in template
-     */
     public function render($post): void
     {
         $descriptionField = new TextAreaField(
@@ -38,15 +35,9 @@ class CityDescriptionBox extends BaseMetaBoxController implements MetaBoxInterfa
             )
         );
 
-        ob_start();
-
-        require_once str_replace(
-            '/',
-            DIRECTORY_SEPARATOR,
-            WP_PLUGIN_DIR . '/understrap-estate/src/Template/MetaBox/CityDescriptionView.php'
-        );
-
-        echo ob_get_clean();
+        $view = ViewLoader::getView('CityDescription');
+        $view->addVariable('descriptionField', $descriptionField);
+        ViewLoader::load($view->name);
     }
 
     public function callback($postId): void

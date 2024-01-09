@@ -7,6 +7,7 @@ use Vendor\UnderstrapEstate\Entity\MetaPoly;
 use Vendor\UnderstrapEstate\Field\TextField;
 use Vendor\UnderstrapEstate\Field\NumberField;
 use Vendor\UnderstrapEstate\Entity\MetaPolyType;
+use Vendor\UnderstrapEstate\Controller\ViewLoader;
 use Vendor\UnderstrapEstate\Interface\FieldInterface;
 use Vendor\UnderstrapEstate\Interface\MetaBoxInterface;
 use Vendor\UnderstrapEstate\Controller\BaseMetaBoxController;
@@ -28,9 +29,6 @@ class EstateAttributionBox extends BaseMetaBoxController implements MetaBoxInter
         );
     }
 
-    /**
-     * @var FieldInterface[] $fields use in template
-     */
     public function render($post): void
     {
         $fields = [];
@@ -50,15 +48,9 @@ class EstateAttributionBox extends BaseMetaBoxController implements MetaBoxInter
             };
         }
 
-        ob_start();
-
-        require_once str_replace(
-            '/',
-            DIRECTORY_SEPARATOR,
-            WP_PLUGIN_DIR . '/understrap-estate/src/Template/MetaBox/EstateAttributionView.php'
-        );
-
-        echo ob_get_clean();
+        $view = ViewLoader::getView('EstateAttribution');
+        $view->addVariable('fields', $fields);
+        ViewLoader::load($view->name);
     }
 
     public function callback($postId): void

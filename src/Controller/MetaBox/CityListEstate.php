@@ -2,10 +2,11 @@
 
 namespace Vendor\UnderstrapEstate\Controller\MetaBox;
 
-use Vendor\UnderstrapEstate\Controller\BaseMetaBoxController;
-use Vendor\UnderstrapEstate\Entity\MetaPoly;
 use Vendor\UnderstrapEstate\Entity\Post;
+use Vendor\UnderstrapEstate\Entity\MetaPoly;
+use Vendor\UnderstrapEstate\Controller\ViewLoader;
 use Vendor\UnderstrapEstate\Interface\MetaBoxInterface;
+use Vendor\UnderstrapEstate\Controller\BaseMetaBoxController;
 
 class CityListEstate extends BaseMetaBoxController implements MetaBoxInterface
 {
@@ -21,10 +22,6 @@ class CityListEstate extends BaseMetaBoxController implements MetaBoxInterface
         );
     }
 
-    /**
-     * @var int $totalPages use in template
-     * @var int $currentPage use in template
-     */
     public function render($post): void
     {
         $estates = $this->getEstates($post->ID);
@@ -32,16 +29,11 @@ class CityListEstate extends BaseMetaBoxController implements MetaBoxInterface
         $estatesPerPage = 10; // Количество 'estate' на страницу
         $totalPages = ceil($totalEstates / $estatesPerPage);
         $currentPage = get_query_var('paged') ? get_query_var('paged') : 1;
-
-        ob_start();
-
-        require_once str_replace(
-            '/',
-            DIRECTORY_SEPARATOR,
-            WP_PLUGIN_DIR . '/understrap-estate/src/Template/MetaBox/ListEstateView.php'
-        );
-
-        echo ob_get_clean();
+        $view = ViewLoader::getView('ListEstate');
+        $view->addVariable('totalPages', $totalPages);
+        $view->addVariable('currentPage', $currentPage);
+        $view->addVariable('estates', $estates);
+        ViewLoader::load($view->name);
     }
 
     public function callback($postId): void
