@@ -12,7 +12,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Vendor\UnderstrapEstate\Main;
+use UnderstrapEstate\Main;
 
 add_action('plugins_loaded', function () {
     load_plugin_textdomain(

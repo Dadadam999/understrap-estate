@@ -7,18 +7,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dadadam999/WPToolkit.git",
-                "reference": "28a9af82072fb2c4b010873bc541a719a02504b6"
+                "reference": "5fa9ccea4ea46c6944db001c057adc58db7ddd71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dadadam999/WPToolkit/zipball/28a9af82072fb2c4b010873bc541a719a02504b6",
-                "reference": "28a9af82072fb2c4b010873bc541a719a02504b6",
+                "url": "https://api.github.com/repos/Dadadam999/WPToolkit/zipball/5fa9ccea4ea46c6944db001c057adc58db7ddd71",
+                "reference": "5fa9ccea4ea46c6944db001c057adc58db7ddd71",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.2||^8.3"
             },
-            "time": "2024-01-12T13:08:52+00:00",
+            "time": "2024-01-12T13:43:42+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",

@@ -10,13 +10,18 @@ use UnderstrapEstate\Controller\Post\CityPost;
 use UnderstrapEstate\Controller\Post\EstatePost;
 use UnderstrapEstate\Controller\MetaBox\CityListEstate;
 use UnderstrapEstate\Controller\MetaBox\EstateCityIdBox;
+use WpToolKit\Controller\ScriptController;
 
 class Main
 {
     public function __construct()
     {
-        $this->initViews();
+        ScriptController::setFolders(
+            '/understrap-estate/assets/style',
+            '/understrap-estate/assets/script',
+        );
 
+        $this->initViews();
         $estateType = new EstatePost();
         $cityType = new CityPost();
         $cityType->registerSubMenu($estateType->getPost(), $cityType->getPost());

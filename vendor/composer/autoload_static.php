@@ -11,9 +11,9 @@ class ComposerStaticInit711690bec0038a0603686b88d3d7fd53
         array (
             'WpToolKit\\' => 10,
         ),
-        'V' => 
+        'U' => 
         array (
-            'Vendor\\UnderstrapEstate\\' => 24,
+            'UnderstrapEstate\\' => 17,
         ),
     );
 
@@ -22,7 +22,7 @@ class ComposerStaticInit711690bec0038a0603686b88d3d7fd53
         array (
             0 => __DIR__ . '/..' . '/dadadam/wptoolkit/src',
         ),
-        'Vendor\\UnderstrapEstate\\' => 
+        'UnderstrapEstate\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

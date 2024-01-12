@@ -6,10 +6,10 @@ use WpToolKit\Entity\ScriptType;
 
 class ScriptController
 {
-    private static string $folderCss = 'understrap-estate/assets/style';
-    private static string $folderJs = 'understrap-estate/assets/script';
+    private static ?string $folderCss = null;
+    private static ?string $folderJs = null;
 
-    public function setFolders(string $folderCss, string $folderJs)
+    public static function setFolders(string $folderCss, string $folderJs)
     {
         self::$folderCss = $folderCss;
         self::$folderJs = $folderJs;

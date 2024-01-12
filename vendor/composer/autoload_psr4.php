@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'WpToolKit\\' => array($vendorDir . '/dadadam/wptoolkit/src'),
-    'Vendor\\UnderstrapEstate\\' => array($baseDir . '/src'),
+    'UnderstrapEstate\\' => array($baseDir . '/src'),
 );

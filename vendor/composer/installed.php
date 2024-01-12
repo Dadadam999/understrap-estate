@@ -3,7 +3,7 @@
         'name' => 'vendor/understrap-estate',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '6d1086a24852b0fd8e9c8245cbf57fe83ffa5f26',
+        'reference' => 'd984796693dc3aa5280ca545864461e2c85d8155',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'dadadam/wptoolkit' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '28a9af82072fb2c4b010873bc541a719a02504b6',
+            'reference' => '5fa9ccea4ea46c6944db001c057adc58db7ddd71',
             'type' => 'library',
             'install_path' => __DIR__ . '/../dadadam/wptoolkit',
             'aliases' => array(
@@ -24,7 +24,7 @@
         'vendor/understrap-estate' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '6d1086a24852b0fd8e9c8245cbf57fe83ffa5f26',
+            'reference' => 'd984796693dc3aa5280ca545864461e2c85d8155',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
