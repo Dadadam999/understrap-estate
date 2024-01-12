@@ -1,15 +1,15 @@
 <?php
 
-namespace Vendor\UnderstrapEstate;
+namespace UnderstrapEstate;
 
-use Vendor\UnderstrapEstate\Entity\View;
-use Vendor\UnderstrapEstate\Entity\MetaPoly;
-use Vendor\UnderstrapEstate\Entity\MetaPolyType;
-use Vendor\UnderstrapEstate\Controller\ViewLoader;
-use Vendor\UnderstrapEstate\Controller\Post\CityPost;
-use Vendor\UnderstrapEstate\Controller\Post\EstatePost;
-use Vendor\UnderstrapEstate\Controller\MetaBox\CityListEstate;
-use Vendor\UnderstrapEstate\Controller\MetaBox\EstateCityIdBox;
+use WpToolKit\Entity\View;
+use WpToolKit\Entity\MetaPoly;
+use WpToolKit\Entity\MetaPolyType;
+use WpToolKit\Controller\ViewLoader;
+use UnderstrapEstate\Controller\Post\CityPost;
+use UnderstrapEstate\Controller\Post\EstatePost;
+use UnderstrapEstate\Controller\MetaBox\CityListEstate;
+use UnderstrapEstate\Controller\MetaBox\EstateCityIdBox;
 
 class Main
 {

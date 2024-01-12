@@ -1,13 +1,13 @@
 <?php
 
-namespace Vendor\UnderstrapEstate\Controller\MetaBox;
+namespace UnderstrapEstate\Controller\MetaBox;
 
-use Vendor\UnderstrapEstate\Entity\Post;
-use Vendor\UnderstrapEstate\Field\TextAreaField;
-use Vendor\UnderstrapEstate\Interface\MetaBoxInterface;
-use Vendor\UnderstrapEstate\Controller\BaseMetaBoxController;
-use Vendor\UnderstrapEstate\Controller\ViewLoader;
-use Vendor\UnderstrapEstate\Entity\MetaPoly;
+use WpToolKit\Entity\Post;
+use WpToolKit\Entity\MetaPoly;
+use WpToolKit\Field\TextAreaField;
+use WpToolKit\Controller\ViewLoader;
+use WpToolKit\Interface\MetaBoxInterface;
+use WpToolKit\Controller\BaseMetaBoxController;
 
 class CityDescriptionBox extends BaseMetaBoxController implements MetaBoxInterface
 {

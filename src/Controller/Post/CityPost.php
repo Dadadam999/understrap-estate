@@ -1,12 +1,12 @@
 <?php
 
-namespace Vendor\UnderstrapEstate\Controller\Post;
+namespace UnderstrapEstate\Controller\Post;
 
-use Vendor\UnderstrapEstate\Controller\MetaBox\CityDescriptionBox;
-use Vendor\UnderstrapEstate\Entity\Post;
-use Vendor\UnderstrapEstate\Entity\MetaPoly;
-use Vendor\UnderstrapEstate\Entity\MetaPolyType;
-use Vendor\UnderstrapEstate\Controller\BasePostController;
+use WpToolKit\Entity\Post;
+use WpToolKit\Entity\MetaPoly;
+use WpToolKit\Entity\MetaPolyType;
+use WpToolKit\Controller\BasePostController;
+use UnderstrapEstate\Controller\MetaBox\CityDescriptionBox;
 
 class CityPost extends BasePostController
 {

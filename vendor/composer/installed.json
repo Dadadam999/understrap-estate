@@ -1,14 +1,9 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "b39734dc8b794b32d1198bce2adb5090",
     "packages": [
         {
             "name": "dadadam/wptoolkit",
             "version": "dev-main",
+            "version_normalized": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dadadam999/WPToolkit.git",
@@ -23,8 +18,10 @@
             "require": {
                 "php": "^8.2||^8.3"
             },
+            "time": "2024-01-12T13:08:52+00:00",
             "default-branch": true,
             "type": "library",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "WpToolKit\\": "src/"
@@ -45,18 +42,9 @@
                 "issues": "https://github.com/Dadadam999/WPToolkit/issues",
                 "source": "https://github.com/Dadadam999/WPToolkit/tree/main"
             },
-            "time": "2024-01-12T13:08:52+00:00"
+            "install-path": "../dadadam/wptoolkit"
         }
     ],
-    "packages-dev": [],
-    "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": {
-        "dadadam/wptoolkit": 20
-    },
-    "prefer-stable": false,
-    "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "dev": true,
+    "dev-package-names": []
 }

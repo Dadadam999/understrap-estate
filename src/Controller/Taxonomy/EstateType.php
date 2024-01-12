@@ -1,10 +1,10 @@
 <?php
 
-namespace Vendor\UnderstrapEstate\Controller\Taxonomy;
+namespace UnderstrapEstate\Controller\Taxonomy;
 
-use Vendor\UnderstrapEstate\Controller\BaseTaxonomyController;
-use Vendor\UnderstrapEstate\Entity\Post;
-use Vendor\UnderstrapEstate\Entity\Taxonomy;
+use WpToolKit\Entity\Post;
+use WpToolKit\Entity\Taxonomy;
+use WpToolKit\Controller\BaseTaxonomyController;
 
 class EstateType extends BaseTaxonomyController
 {

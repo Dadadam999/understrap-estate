@@ -2,7 +2,7 @@
     "name": "vendor/understrap-estate",
     "autoload": {
         "psr-4": {
-            "Vendor\\UnderstrapEstate\\": "src/"
+            "UnderstrapEstate\\": "src/"
         }
     },
     "authors": [
@@ -11,5 +11,7 @@
             "email": "bogdanov.andrey.code@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "dadadam/wptoolkit": "dev-main"
+    }
 }

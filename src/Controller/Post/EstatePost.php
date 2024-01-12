@@ -1,15 +1,15 @@
 <?php
 
-namespace Vendor\UnderstrapEstate\Controller\Post;
+namespace UnderstrapEstate\Controller\Post;
 
-use Vendor\UnderstrapEstate\Entity\Post;
-use Vendor\UnderstrapEstate\Entity\MetaPoly;
-use Vendor\UnderstrapEstate\Entity\Taxonomy;
-use Vendor\UnderstrapEstate\Entity\MetaPolyType;
-use Vendor\UnderstrapEstate\Controller\BasePostController;
-use Vendor\UnderstrapEstate\Controller\Taxonomy\EstateType;
-use Vendor\UnderstrapEstate\Controller\MetaBox\EstateAttributionBox;
-use Vendor\UnderstrapEstate\Controller\MetaBox\EstateDescriptionBox;
+use WpToolKit\Entity\Post;
+use WpToolKit\Entity\MetaPoly;
+use WpToolKit\Entity\Taxonomy;
+use WpToolKit\Entity\MetaPolyType;
+use WpToolKit\Controller\BasePostController;
+use UnderstrapEstate\Controller\Taxonomy\EstateType;
+use UnderstrapEstate\Controller\MetaBox\EstateAttributionBox;
+use UnderstrapEstate\Controller\MetaBox\EstateDescriptionBox;
 
 class EstatePost extends BasePostController
 {

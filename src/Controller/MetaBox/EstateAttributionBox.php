@@ -1,16 +1,15 @@
 <?php
 
-namespace Vendor\UnderstrapEstate\Controller\MetaBox;
+namespace UnderstrapEstate\Controller\MetaBox;
 
-use Vendor\UnderstrapEstate\Entity\Post;
-use Vendor\UnderstrapEstate\Entity\MetaPoly;
-use Vendor\UnderstrapEstate\Field\TextField;
-use Vendor\UnderstrapEstate\Field\NumberField;
-use Vendor\UnderstrapEstate\Entity\MetaPolyType;
-use Vendor\UnderstrapEstate\Controller\ViewLoader;
-use Vendor\UnderstrapEstate\Interface\FieldInterface;
-use Vendor\UnderstrapEstate\Interface\MetaBoxInterface;
-use Vendor\UnderstrapEstate\Controller\BaseMetaBoxController;
+use WpToolKit\Entity\Post;
+use WpToolKit\Entity\MetaPoly;
+use WpToolKit\Field\TextField;
+use WpToolKit\Field\NumberField;
+use WpToolKit\Entity\MetaPolyType;
+use WpToolKit\Controller\ViewLoader;
+use WpToolKit\Interface\MetaBoxInterface;
+use WpToolKit\Controller\BaseMetaBoxController;
 
 class EstateAttributionBox extends BaseMetaBoxController implements MetaBoxInterface
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Vendor\UnderstrapEstate\Controller\MetaBox;
+namespace UnderstrapEstate\Controller\MetaBox;
 
-use Vendor\UnderstrapEstate\Entity\Post;
-use Vendor\UnderstrapEstate\Entity\MetaPoly;
-use Vendor\UnderstrapEstate\Field\SelectField;
-use Vendor\UnderstrapEstate\Controller\ViewLoader;
-use Vendor\UnderstrapEstate\Interface\MetaBoxInterface;
-use Vendor\UnderstrapEstate\Controller\BaseMetaBoxController;
+use WpToolKit\Entity\Post;
+use WpToolKit\Entity\MetaPoly;
+use WpToolKit\Field\SelectField;
+use WpToolKit\Controller\ViewLoader;
+use WpToolKit\Interface\MetaBoxInterface;
+use WpToolKit\Controller\BaseMetaBoxController;
 
 class EstateCityIdBox extends BaseMetaBoxController implements MetaBoxInterface
 {
