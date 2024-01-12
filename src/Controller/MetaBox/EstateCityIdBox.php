@@ -7,26 +7,27 @@ use WpToolKit\Entity\MetaPoly;
 use WpToolKit\Field\SelectField;
 use WpToolKit\Controller\ViewLoader;
 use WpToolKit\Interface\MetaBoxInterface;
-use WpToolKit\Controller\BaseMetaBoxController;
+use WpToolKit\Controller\MetaBoxController;
 
-class EstateCityIdBox extends BaseMetaBoxController implements MetaBoxInterface
+class EstateCityIdBox extends MetaBoxController implements MetaBoxInterface
 {
     public function __construct(
         private Post $post,
+        private ViewLoader $viewLoader,
         private Post $postCity,
         private MetaPoly $cityIdPoly
     ) {
         parent::__construct(
             'estate_city_id',
             __('ID city', 'understrap-estate-plugin'),
-            $post->getName()
+            $post->name
         );
     }
 
     public function render($post): void
     {
         $cities = get_posts([
-            'post_type' => $this->postCity->getName(),
+            'post_type' => $this->postCity->name,
             'posts_per_page' => -1
         ]);
 
@@ -37,19 +38,19 @@ class EstateCityIdBox extends BaseMetaBoxController implements MetaBoxInterface
         }
 
         $citiesField = new SelectField(
-            $this->cityIdPoly->getName(),
+            $this->cityIdPoly->name,
             __('Choose a real estate city.', 'understrap-estate-plugin'),
             $options,
             get_post_meta(
                 $post->ID,
-                $this->cityIdPoly->getName(),
-                $this->cityIdPoly->isSingle()
+                $this->cityIdPoly->name,
+                $this->cityIdPoly->single
             )
         );
 
-        $view = ViewLoader::getView('EstateCityId');
+        $view = $this->viewLoader->getView('EstateCityId');
         $view->addVariable('citiesField', $citiesField);
-        ViewLoader::load($view->name);
+        $this->viewLoader->load($view->name);
     }
 
     public function callback($postId): void
@@ -66,11 +67,11 @@ class EstateCityIdBox extends BaseMetaBoxController implements MetaBoxInterface
             return;
         }
 
-        if (isset($_POST[$this->cityIdPoly->getName()])) {
+        if (isset($_POST[$this->cityIdPoly->name])) {
             update_post_meta(
                 $postId,
-                $this->cityIdPoly->getName(),
-                sanitize_text_field($_POST[$this->cityIdPoly->getName()])
+                $this->cityIdPoly->name,
+                sanitize_text_field($_POST[$this->cityIdPoly->name])
             );
         }
     }

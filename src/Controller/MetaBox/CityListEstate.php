@@ -6,34 +6,35 @@ use WpToolKit\Entity\Post;
 use WpToolKit\Entity\MetaPoly;
 use WpToolKit\Controller\ViewLoader;
 use WpToolKit\Interface\MetaBoxInterface;
-use WpToolKit\Controller\BaseMetaBoxController;
+use WpToolKit\Controller\MetaBoxController;
 
-class CityListEstate extends BaseMetaBoxController implements MetaBoxInterface
+class CityListEstate extends MetaBoxController implements MetaBoxInterface
 {
     public function __construct(
         private Post $post,
+        private ViewLoader $viewLoader,
         private Post $estatePost,
         private MetaPoly $cityId
     ) {
         parent::__construct(
             'city_list_estate',
             __('List estate', 'understrap-estate-plugin'),
-            $post->getName()
+            $post->name
         );
     }
 
     public function render($post): void
     {
         $estates = $this->getEstates($post->ID);
-        $totalEstates = count($estates); // Общее количество 'estate'
-        $estatesPerPage = 10; // Количество 'estate' на страницу
+        $totalEstates = count($estates);
+        $estatesPerPage = 10;
         $totalPages = ceil($totalEstates / $estatesPerPage);
         $currentPage = get_query_var('paged') ? get_query_var('paged') : 1;
-        $view = ViewLoader::getView('ListEstate');
+        $view = $this->viewLoader->getView('ListEstate');
         $view->addVariable('totalPages', $totalPages);
         $view->addVariable('currentPage', $currentPage);
         $view->addVariable('estates', $estates);
-        ViewLoader::load($view->name);
+        $this->viewLoader->load($view->name);
     }
 
     public function callback($postId): void
@@ -54,7 +55,7 @@ class CityListEstate extends BaseMetaBoxController implements MetaBoxInterface
             'posts_per_page' => -1,
             'meta_query' => [
                 [
-                    'key' => $this->cityId->getName(),
+                    'key' => $this->cityId->name,
                     'value' => $postId,
                     'compare' => '=',
                 ],

@@ -2,49 +2,45 @@
 
 namespace UnderstrapEstate;
 
+use UnderstrapEstate\Builder\CityBuilder;
 use WpToolKit\Entity\View;
-use WpToolKit\Entity\MetaPoly;
-use WpToolKit\Entity\MetaPolyType;
+use WpToolKit\Entity\ScriptType;
 use WpToolKit\Controller\ViewLoader;
+use WpToolKit\Controller\ScriptController;
+use UnderstrapEstate\Builder\EstateBuilder;
 use UnderstrapEstate\Controller\Post\CityPost;
 use UnderstrapEstate\Controller\Post\EstatePost;
-use UnderstrapEstate\Controller\MetaBox\CityListEstate;
-use UnderstrapEstate\Controller\MetaBox\EstateCityIdBox;
-use WpToolKit\Controller\ScriptController;
 
 class Main
 {
+    private ViewLoader $viewLoader;
+    private ScriptController $scripts;
+
     public function __construct()
     {
-        ScriptController::setFolders(
-            '/understrap-estate/assets/style',
-            '/understrap-estate/assets/script',
-        );
-
+        $this->scripts = new ScriptController();
+        $this->viewLoader = new ViewLoader();
         $this->initViews();
-        $estateType = new EstatePost();
-        $cityType = new CityPost();
-        $cityType->registerSubMenu($estateType->getPost(), $cityType->getPost());
+        $estatePost = new EstatePost();
+        $cityPost = new CityPost();
+        $cityPost->registerSubMenu($estatePost->getPost());
+        $estateBuilder = new EstateBuilder($estatePost, $cityPost, $this->viewLoader);
+        $estateBuilder->create();
+        $cityBuilder = new CityBuilder($cityPost, $estatePost, $this->viewLoader);
+        $cityBuilder->create();
 
-        $cityIdPoly = new MetaPoly(
-            'city_id',
-            MetaPolyType::INTENGER,
-            __('City id', 'understrap-estate-plugin')
+        $this->scripts->addStyle(
+            'understrap-estate-metabox',
+            '/understrap-estate/assets/style/MetaBox.css',
+            ScriptType::ADMIN
         );
-
-        $estateType->addMetaPoly($estateType->getPost(), $cityIdPoly);
-        $estateCityIdBox = new EstateCityIdBox($estateType->getPost(), $cityType->getPost(), $cityIdPoly);
-        $cityListEstate = new CityListEstate($cityType->getPost(), $estateType->getPost(), $cityIdPoly);
     }
 
-    /**
-     * @return View[]
-     */
     private function initViews(): void
     {
         $basePathTemplate = WP_PLUGIN_DIR . '/understrap-estate/src/Template';
 
-        ViewLoader::add(
+        $this->viewLoader->add(
             new View(
                 'CityDescription',
                 $basePathTemplate . '/MetaBox/CityDescriptionView.php',
@@ -52,7 +48,7 @@ class Main
             )
         );
 
-        ViewLoader::add(
+        $this->viewLoader->add(
             new View(
                 'EstateAttribution',
                 $basePathTemplate . '/MetaBox/EstateAttributionView.php',
@@ -60,7 +56,7 @@ class Main
             )
         );
 
-        ViewLoader::add(
+        $this->viewLoader->add(
             new View(
                 'EstateCityId',
                 $basePathTemplate . '/MetaBox/EstateCityIdView.php',
@@ -68,7 +64,7 @@ class Main
             )
         );
 
-        ViewLoader::add(
+        $this->viewLoader->add(
             new View(
                 'EstateDescription',
                 $basePathTemplate . '/MetaBox/EstateDescriptionView.php',
@@ -76,7 +72,7 @@ class Main
             )
         );
 
-        ViewLoader::add(
+        $this->viewLoader->add(
             new View(
                 'ListEstate',
                 $basePathTemplate . '/MetaBox/ListEstateView.php',

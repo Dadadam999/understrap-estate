@@ -7,37 +7,37 @@ use WpToolKit\Entity\MetaPoly;
 use WpToolKit\Field\TextAreaField;
 use WpToolKit\Controller\ViewLoader;
 use WpToolKit\Interface\MetaBoxInterface;
-use WpToolKit\Controller\BaseMetaBoxController;
+use WpToolKit\Controller\MetaBoxController;
 
-class CityDescriptionBox extends BaseMetaBoxController implements MetaBoxInterface
+class CityDescriptionBox extends MetaBoxController implements MetaBoxInterface
 {
     public function __construct(
         private Post $post,
-        private MetaPoly $descriptionPoly
-
+        private ViewLoader $viewLoader,
+        private MetaPoly $descriptionPoly,
     ) {
         parent::__construct(
             'city_description',
             __('Description', 'understrap-estate-plugin'),
-            $post->getName()
+            $post->name
         );
     }
 
     public function render($post): void
     {
         $descriptionField = new TextAreaField(
-            $this->descriptionPoly->getName(),
+            $this->descriptionPoly->name,
             __('Enter a description of the city', 'understrap-estate-plugin'),
             get_post_meta(
                 $post->ID,
-                $this->descriptionPoly->getName(),
-                $this->descriptionPoly->isSingle()
+                $this->descriptionPoly->name,
+                $this->descriptionPoly->single
             )
         );
 
-        $view = ViewLoader::getView('CityDescription');
+        $view = $this->viewLoader->getView('CityDescription');
         $view->addVariable('descriptionField', $descriptionField);
-        ViewLoader::load($view->name);
+        $this->viewLoader->load($view->name);
     }
 
     public function callback($postId): void
@@ -54,11 +54,11 @@ class CityDescriptionBox extends BaseMetaBoxController implements MetaBoxInterfa
             return;
         }
 
-        if (isset($_POST[$this->descriptionPoly->getName()])) {
+        if (isset($_POST[$this->descriptionPoly->name])) {
             update_post_meta(
                 $postId,
-                $this->descriptionPoly->getName(),
-                esc_textarea($_POST[$this->descriptionPoly->getName()])
+                $this->descriptionPoly->name,
+                esc_textarea($_POST[$this->descriptionPoly->name])
             );
         }
     }

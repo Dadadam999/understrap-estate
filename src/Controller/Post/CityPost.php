@@ -3,12 +3,9 @@
 namespace UnderstrapEstate\Controller\Post;
 
 use WpToolKit\Entity\Post;
-use WpToolKit\Entity\MetaPoly;
-use WpToolKit\Entity\MetaPolyType;
-use WpToolKit\Controller\BasePostController;
-use UnderstrapEstate\Controller\MetaBox\CityDescriptionBox;
+use WpToolKit\Controller\PostController;
 
-class CityPost extends BasePostController
+class CityPost extends PostController
 {
     private Post $post;
 
@@ -22,17 +19,8 @@ class CityPost extends BasePostController
             ['title', 'thumbnail']
         );
 
-        $this->post->setPosition(2);
-        $this->registerPublicType($this->post);
-
-        $descriptionPoly = new MetaPoly(
-            'city_description',
-            MetaPolyType::STRING,
-            __('Description', 'understrap-estate-plugin')
-        );
-
-        $this->addMetaPoly($this->post, $descriptionPoly);
-        $descriptionBox = new CityDescriptionBox($this->post, $descriptionPoly);
+        $this->post->position = 2;
+        parent::__construct($this->post);
     }
 
     public function getPost(): Post

@@ -4,9 +4,9 @@ namespace UnderstrapEstate\Controller\Taxonomy;
 
 use WpToolKit\Entity\Post;
 use WpToolKit\Entity\Taxonomy;
-use WpToolKit\Controller\BaseTaxonomyController;
+use WpToolKit\Controller\TaxonomyController;
 
-class EstateType extends BaseTaxonomyController
+class EstateType extends TaxonomyController
 {
     private Taxonomy $taxonomy;
 
@@ -18,11 +18,11 @@ class EstateType extends BaseTaxonomyController
             __('Type of estate', 'understrap-estate-plugin')
         );
 
-        $this->taxonomy->setShowInQuickEdit(false);
-        $this->taxonomy->setShowTagCloud(false);
-        $this->taxonomy->setHierarchical(true);
-        $this->registerTaxonomy($this->post, $this->taxonomy);
-        $this->registerSebMenu($this->post, $this->taxonomy);
+        $this->taxonomy->showInQuickEdit = false;
+        $this->taxonomy->showTagCloud = false;
+        $this->taxonomy->hierarchical = true;
+        parent::__construct($this->post, $this->taxonomy);
+        $this->registerSubMenu();
     }
 
     public function getPost(): Post

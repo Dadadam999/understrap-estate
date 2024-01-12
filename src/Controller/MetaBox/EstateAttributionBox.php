@@ -9,9 +9,9 @@ use WpToolKit\Field\NumberField;
 use WpToolKit\Entity\MetaPolyType;
 use WpToolKit\Controller\ViewLoader;
 use WpToolKit\Interface\MetaBoxInterface;
-use WpToolKit\Controller\BaseMetaBoxController;
+use WpToolKit\Controller\MetaBoxController;
 
-class EstateAttributionBox extends BaseMetaBoxController implements MetaBoxInterface
+class EstateAttributionBox extends MetaBoxController implements MetaBoxInterface
 {
     /**
      * @param Post $post
@@ -19,12 +19,13 @@ class EstateAttributionBox extends BaseMetaBoxController implements MetaBoxInter
      */
     public function __construct(
         private Post $post,
-        private array $attributes
+        private ViewLoader $viewLoader,
+        public array $attributes
     ) {
         parent::__construct(
             'estate_attributes',
             __('Estate attributes', 'understrap-estate-plugin'),
-            $post->getName()
+            $post->name
         );
     }
 
@@ -33,23 +34,23 @@ class EstateAttributionBox extends BaseMetaBoxController implements MetaBoxInter
         $fields = [];
 
         foreach ($this->attributes as $attribute) {
-            $fields[] = match ($attribute->getType()) {
+            $fields[] = match ($attribute->type) {
                 default => new TextField(
-                    $attribute->getName(),
-                    $attribute->getTitle(),
-                    get_post_meta($post->ID, $attribute->getName(), $attribute->isSingle()),
+                    $attribute->name,
+                    $attribute->title,
+                    get_post_meta($post->ID, $attribute->name, $attribute->single),
                 ),
                 MetaPolyType::INTENGER => new NumberField(
-                    $attribute->getName(),
-                    $attribute->getTitle(),
-                    get_post_meta($post->ID, $attribute->getName(), $attribute->isSingle()),
+                    $attribute->name,
+                    $attribute->title,
+                    get_post_meta($post->ID, $attribute->name, $attribute->single),
                 )
             };
         }
 
-        $view = ViewLoader::getView('EstateAttribution');
+        $view = $this->viewLoader->getView('EstateAttribution');
         $view->addVariable('fields', $fields);
-        ViewLoader::load($view->name);
+        $this->viewLoader->load($view->name);
     }
 
     public function callback($postId): void
@@ -67,22 +68,14 @@ class EstateAttributionBox extends BaseMetaBoxController implements MetaBoxInter
         }
 
         foreach ($this->attributes as $attribut) {
-            if (isset($_POST[$attribut->getName()])) {
+            if (isset($_POST[$attribut->name])) {
                 update_post_meta(
                     $postId,
-                    $attribut->getName(),
-                    sanitize_text_field($_POST[$attribut->getName()])
+                    $attribut->name,
+                    sanitize_text_field($_POST[$attribut->name])
                 );
             }
         }
-    }
-
-    /**
-     * @return MetaPoly[]
-     */
-    public function getAttributes(): array
-    {
-        return $this->attributes;
     }
 
     public function getPost(): Post
