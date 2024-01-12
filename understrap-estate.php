@@ -18,11 +18,7 @@ add_action('plugins_loaded', function () {
     load_plugin_textdomain(
         'understrap-estate-plugin',
         false,
-        str_replace(
-            '/',
-            DIRECTORY_SEPARATOR,
-            '/understrap-estate/languages/'
-        )
+        '/understrap-estate/languages/'
     );
 
     new Main();
