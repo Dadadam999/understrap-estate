@@ -6,30 +6,29 @@ use UnderstrapEstate\Builder\CityBuilder;
 use WpToolKit\Entity\View;
 use WpToolKit\Entity\ScriptType;
 use WpToolKit\Controller\ViewLoader;
-use WpToolKit\Controller\ScriptController;
 use UnderstrapEstate\Builder\EstateBuilder;
 use UnderstrapEstate\Controller\Post\CityPost;
 use UnderstrapEstate\Controller\Post\EstatePost;
+use WpToolKit\Factory\ServiceFactory;
 
 class Main
 {
     private ViewLoader $viewLoader;
-    private ScriptController $scripts;
 
     public function __construct()
     {
-        $this->scripts = new ScriptController();
         $this->viewLoader = new ViewLoader();
         $this->initViews();
         $estatePost = new EstatePost();
         $cityPost = new CityPost();
-        $cityPost->registerSubMenu($estatePost->getPost());
+        $cityPost->addToSubMenu($estatePost->getPost());
         $estateBuilder = new EstateBuilder($estatePost, $cityPost, $this->viewLoader);
         $estateBuilder->create();
         $cityBuilder = new CityBuilder($cityPost, $estatePost, $this->viewLoader);
         $cityBuilder->create();
+        $scripts = ServiceFactory::getService('ScriptController');
 
-        $this->scripts->addStyle(
+        $scripts->addStyle(
             'understrap-estate-metabox',
             '/understrap-estate/assets/style/MetaBox.css',
             ScriptType::ADMIN

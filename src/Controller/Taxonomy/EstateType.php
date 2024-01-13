@@ -22,7 +22,7 @@ class EstateType extends TaxonomyController
         $this->taxonomy->showTagCloud = false;
         $this->taxonomy->hierarchical = true;
         parent::__construct($this->post, $this->taxonomy);
-        $this->registerSubMenu();
+        $this->addToSubMenu();
     }
 
     public function getPost(): Post

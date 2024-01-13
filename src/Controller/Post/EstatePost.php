@@ -20,7 +20,7 @@ class EstatePost extends PostController
         );
 
         parent::__construct($this->post);
-        $this->registerMenu();
+        $this->addToMenu();
     }
 
     public function getPost(): Post
