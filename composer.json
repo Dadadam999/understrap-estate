@@ -12,6 +12,6 @@
         }
     ],
     "require": {
-        "dadadam/wptoolkit": "dev-main"
+        "dadadam/wptoolkit": "v1.1.4-beta"
     }
 }
