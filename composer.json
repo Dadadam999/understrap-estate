@@ -12,6 +12,6 @@
         }
     ],
     "require": {
-        "arraydev/wptoolkit": "v1.1.4-beta"
+        "arraydev/wptoolkit": "v1.1.8-beta"
     }
 }
