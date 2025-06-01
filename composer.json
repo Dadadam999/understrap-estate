@@ -7,11 +7,11 @@
     },
     "authors": [
         {
-            "name": "Dadadam",
+            "name": "ArrayDev",
             "email": "bogdanov.andrey.code@gmail.com"
         }
     ],
     "require": {
-        "dadadam/wptoolkit": "v1.1.4-beta"
+        "arraydev/wptoolkit": "v1.1.4-beta"
     }
 }
